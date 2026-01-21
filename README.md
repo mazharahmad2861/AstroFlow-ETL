@@ -4,28 +4,27 @@ This project involves creating an ETL (Extract, Transform, Load) pipeline using 
 The project leverages Docker to run Airflow and Postgres as services, ensuring an isolated and reproducible environment. We also utilize Airflow hooks and operators to handle the ETL process efficiently.
 
 ### Key Components of the Project:
-Airflow for Orchestration:
-
+#### Airflow for Orchestration:
 Airflow is used to define, schedule, and monitor the entire ETL pipeline. It manages task dependencies, ensuring that the process runs sequentially and reliably.
 The Airflow DAG (Directed Acyclic Graph) defines the workflow, which includes tasks like data extraction, transformation, and loading.
-Postgres Database:
 
+#### Postgres Database:
 A PostgreSQL database is used to store the extracted and transformed data.
 Postgres is hosted in a Docker container, making it easy to manage and ensuring data persistence through Docker volumes.
 We interact with Postgres using Airflow’s PostgresHook and PostgresOperator.
-NASA API (Astronomy Picture of the Day):
 
+#### NASA API (Astronomy Picture of the Day):
 The external API used in this project is NASA’s APOD API, which provides data about the astronomy picture of the day, including metadata like the title, explanation, and the URL of the image.
 We use Airflow’s SimpleHttpOperator to extract data from the API.
-Objectives of the Project:
+
+### Objectives of the Project:
 Extract Data:
-
 The pipeline extracts astronomy-related data from NASA’s APOD API on a scheduled basis (daily, in this case).
+
 Transform Data:
-
 Transformations such as filtering or processing the API response are performed to ensure that the data is in a suitable format before being inserted into the database.
-Load Data into Postgres:
 
+Load Data into Postgres:
 The transformed data is loaded into a Postgres database. The data can be used for further analysis, reporting, or visualization.
 Architecture and Workflow:
 The ETL pipeline is orchestrated in Airflow using a DAG (Directed Acyclic Graph). The pipeline consists of the following stages:
@@ -39,3 +38,24 @@ This stage involves extracting relevant fields like title, explanation, url, and
 3. Load (L):
 The transformed data is loaded into a Postgres table using PostgresHook.
 If the target table doesn’t exist in the Postgres database, it is created automatically as part of the DAG using a create table task.
+
+
+##  Features
+**1.Automated ETL Workflow** — Extract, Transform, Load pipeline scheduled via Airflow DAGs.
+
+**2.NASA APOD API Integration** — Fetches astronomy images and metadata daily.
+
+**3.PostgreSQL Storage** — Stores structured records for querying and analytics.
+
+**4.Dockerized Setup** — Easy deployment with Docker Compose.
+
+**5.Test Coverage** — Includes unit tests for DAGs and tasks. 
+
+##  Tech Stack - 
+Apache Airflow — Workflow orchestration. 
+
+PostgreSQL— Relational database.
+
+Docker— Containerization.
+
+NASA APOD API— Data source.
